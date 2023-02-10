@@ -13,18 +13,7 @@ export default function Avatar({ uid, url,size, onUpload }) {
     if (url) downloadImage(url)
   }, [url])
 
-  async function downloadImage(path) {
-    try {
-      const { data, error } = await supabase.storage.from('avatars').download(path)
-      if (error) {
-        throw error
-      }
-      const url = URL.createObjectURL(data)
-      setAvatarUrl(url)
-    } catch (error) {
-      console.log('Error downloading image: ', error)
-    }
-  } 
+
   ///read images into hook
   const inputAvatar = (event) =>{
     console.log(event.target.files)
@@ -141,8 +130,10 @@ export default function Avatar({ uid, url,size, onUpload }) {
       { imgSrc ? (
        <div>
           {imgSrc.map((img)=> {
-            return <div>
+            return <div key={img}>
               <img src={img} 
+              alt="img"
+              
               style={{ height: size, width: size }}/>
               {console.log(img)}
             </div>
