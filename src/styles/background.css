@@ -4,9 +4,19 @@
 
 .halie-container{
     overflow: hidden;
-    height:100vh;
+    height:1000px;
+    position: absolute;
+    max-width: 100%;
       
   }
+.halie-container-footer{
+    position: absolute;
+    z-index: 0;
+    margin-top: 1000px;
+    z-index: 10;
+    width: 100px;
+    height: 200px;
+}
 .container-shadow{
     position: absolute;
     z-index:4;

@@ -6,19 +6,30 @@
  background-color:rgb(241, 241, 241);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-
-
-  }
+.container{
+  overflow: hidden;
+  min-width: 100%;
 }
+@media only screen and (min-width: 768px) and (max-width: 1920px) {
+ .container{
+  width: 100%
+ }
+ .showcase{
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 15%;
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  max-width: 90%;
+  height: 50%;
+  z-index: 5;
+  
 }
-
+}
 html,
 body {
   max-width: 100vw;
@@ -48,14 +59,25 @@ a {
 }
 
 .showcase{
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
-  height: 50%;
+  margin-top: 10%;
+  margin-bottom: 15%;
   width: 50%;
+
+  height: 50%;
   z-index: 5;
   
+}
+.showcase-end{
+  z-index: 7;
+  position: relative;
+}
+.explain{
+  z-index: 7;
+  position: relative;
 }
