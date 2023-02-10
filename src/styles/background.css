@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilites;
+
+.halie-container{
+    overflow: hidden;
+    height:100vh;
+      
+  }
+.container-shadow{
+    position: absolute;
+    z-index:4;
+    box-shadow: inset 50px 50px 150px 65px #000000; 
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: .4;
+    background-color: black;
+}
+
+  .halie-background1{
+    background-image: url('/background-11-removebg-preview.png') ;
+    height: 240px;
+    width: 3528px;
+    animation: slide-right 50s linear infinite;
+  }
+
+  .halie-background2{
+    background-image: url('/background22-removebg-preview.png') ;
+    height: 250px;
+    width: 3528px;
+    animation: slide-left 50s linear infinite;
+  }
+  .halie-background3{
+    background-image: url('/background-33-removebg-preview.png') ;
+    height: 250px;
+    width: 3528px;
+    animation: slide-right 50s linear infinite;
+  }
+  .halie-background4{
+    background-image: url('/background-44-removebg-preview.png') ;
+    height: 250px;
+    width: 3528px;
+    animation: slide-left 50s linear infinite;
+  }
+  
+  @keyframes slide-left {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-1176px, 0, 0); /* The image width */
+    }
+  }
+  @keyframes slide-right {
+    0% {
+      transform: translate3d(-1176px, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0); /* The image width */
+    }
+  }
+  
