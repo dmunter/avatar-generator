@@ -10,7 +10,7 @@ export default function Avatar({ uid, url,size, onUpload }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [imgSrc, setImgSrc] = useState([])
   useEffect(() => {
-    if (url) downloadImage(url)
+    if (url) console.log(url)
   }, [url])
 
 
