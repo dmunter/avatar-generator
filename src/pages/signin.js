@@ -13,7 +13,7 @@ export default  function  SignIn() {
     Router.push('/')
   }
   return (
-    <div className="container" style={{ padding: '50px 0 100px 0', width: "50%", margin: 'auto' }}>
+    <div className="sign-in-container" style={{ padding: '50px 0 100px 0', width: "50%", margin: 'auto' }}>
         <button onClick = {redirectToIndex}> Back to index.js</button>
       {!session ? (
         <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="dark" />

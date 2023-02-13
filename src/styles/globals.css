@@ -3,14 +3,14 @@
 @tailwind utilites;
 
 :root {
- background-color:rgb(241, 241, 241);
+ background-color:#111;
 }
 
 .container{
   overflow: hidden;
   min-width: 100%;
 }
-@media only screen and (min-width: 768px) and (max-width: 1920px) {
+@media only screen and (max-width: 800px) {
  .container{
   width: 100%
  }
@@ -23,8 +23,7 @@
   margin: auto;
   margin-top: 10%;
   margin-bottom: 15%;
-
-  max-width: 90%;
+  min-width: 90%;
   height: 50%;
   z-index: 5;
   
@@ -68,7 +67,6 @@ a {
   margin-top: 10%;
   margin-bottom: 15%;
   width: 50%;
-
   height: 50%;
   z-index: 5;
   
