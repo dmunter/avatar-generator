@@ -1,9 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { supabase } from "../../utils/supabase"
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { json } from "express"
 import initStripe from "stripe"
 
 export default async function  handler(req, res) {
+  const supabase = useSupabaseClient()
+
   const stripe = initStripe(process.env.STRIPE_SECRET)
 
   const customer = await stripe.customers.create({
