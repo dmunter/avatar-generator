@@ -1,18 +1,27 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-
+import initStripe from "stripe";
+ 
+ 
 export default async function  handler(req, res) {
 
-  const supabase = createClient()
+ 
 
-  const stripe = initStripe(process.env.STRIPE_SECRET)
-
+  const stripe = initStripe(process.env.NEXT_PUBLIC_STRIPE_SECRET)
   const customer = await stripe.customers.create({
-    email: req.body.record.email,
+    email: req.body.email,
   })
+  
+  const resp = await customer
+  console.log(resp)
 
-
-  res.send({message: `stripe customer create: ${customer.id}` })
+  if(customer.email){
+    res.status(200).json({message: `stripe customer create: ${customer.id}`, stripeID: stripe.id })
+  } 
+  else {
+    res.json({error: 'there was an error'})
+  }
+  
+  
 }
 
 

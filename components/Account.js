@@ -85,7 +85,8 @@ export default function Account({ session }) {
         />
         
       </div>
-      <CreateStripeCustomer props = {user.id} />
+      
+      {/* <CreateStripeCustomer props = {user} /> */}
       <div>
         <button
           className="button primary block"
