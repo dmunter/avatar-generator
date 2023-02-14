@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient ,useSession} from '@supabase/auth-helpers-react'
 import Avatar from './Upload'
+import CreateStripeCustomer from './CreateStripeCustomer'
 
 export default function Account({ session }) {
   const supabase = useSupabaseClient()
+
   const user = useUser()
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
-
+  const [stripe, setStripe] = useState(null)
 
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function Account({ session }) {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, website, avatar_url`)
+        .select(`username, stripe_customer, avatar_url`)
         .eq('id', user.id)
         .single()
 
@@ -32,9 +34,9 @@ export default function Account({ session }) {
 
       if (data) {
         setUsername(data.username)
-        // setWebsite(data.website)
-        // setAvatarUrl(data.avatar_url)
       }
+
+
     } catch (error) {
       alert('Error loading user data!')
       console.log(error)
@@ -46,7 +48,6 @@ export default function Account({ session }) {
   async function updateProfile({ username, website, avatar_url }) {
     try {
       setLoading(true)
-
       const updates = {
         id: user.id,
         username,
@@ -69,7 +70,7 @@ export default function Account({ session }) {
 
   
   return (
-    <div className="form-widget">
+    <div className="form-widget bg-white">
       <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />
@@ -82,9 +83,9 @@ export default function Account({ session }) {
           value={username || ''}
           onChange={(e) => setUsername(e.target.value)}
         />
+        
       </div>
-
-
+      <CreateStripeCustomer props = {user.id} />
       <div>
         <button
           className="button primary block"

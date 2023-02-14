@@ -1,10 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import { json } from "express"
-import initStripe from "stripe"
+
 
 export default async function  handler(req, res) {
-  const supabase = useSupabaseClient()
+
+  const supabase = createClient()
 
   const stripe = initStripe(process.env.STRIPE_SECRET)
 
@@ -12,14 +11,8 @@ export default async function  handler(req, res) {
     email: req.body.record.email,
   })
 
-  await supabase
-  .from('profiles')
-  .update({stripe_customer: customer.id})
-  .eq('id', req.body.record.id)
 
   res.send({message: `stripe customer create: ${customer.id}` })
-
-
 }
 
 
