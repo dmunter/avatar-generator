@@ -4,9 +4,7 @@ import initStripe from "stripe";
  
 export default async function  handler(req, res) {
 
- 
-
-  const stripe = initStripe(process.env.NEXT_PUBLIC_STRIPE_SECRET)
+  const stripe = initStripe(process.env.STRIPE_SECRET)
   const customer = await stripe.customers.create({
     email: req.body.email,
   })
