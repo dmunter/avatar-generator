@@ -1,0 +1,274 @@
+.image-wrapper {
+    box-sizing: content-box;
+   
+  }
+    /* the magic happens here */
+.image-wrapper > div {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+.test123{
+    background-color: purple;
+}
+.flex-container{
+    
+    display: flex;
+    height: auto;
+    flex-wrap: wrap;
+
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.image-container{
+
+    margin:15px;
+    position: relative;
+    min-width: 140px;
+    max-width: 200px;
+}
+.image-container >img {
+ left:0;
+}
+
+.style-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(133, 134, 134);
+    width:150px;
+    border-radius: 5px;
+    height: 150px;
+    
+}
+.gender-images{
+    position: relative;
+    width: 150px;
+    height: 180px;
+    top:0;
+    left: 0;
+    right:0;
+    bottom:0;
+}
+.glow {
+    background: #2e3537;
+    padding: 0.75em 1.5em;
+    border: 3px solid white;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: auto;
+    position: relative;
+    display: grid;
+    place-items: center;
+    transition: 0.5s;
+}
+
+.glow:before, .glow:after {
+    content: '';
+    position: absolute;
+    background-color: #FF0000;
+    height: 100%;
+    width: 60%;
+    z-index: -1;
+    opacity: 0.5;
+    border-radius: 15px;
+}
+
+.glow:hover {
+    color: #FF0000;
+    border-color: #FF0000;
+    text-shadow: 0 0 5px #FF0000;
+    box-shadow:
+        0 0 10px #FF0000,
+        0 0 20px #FF0000;
+    letter-spacing: 5px;
+}
+
+.glow:hover:before {
+    animation: pulse 2s ease-out infinite;
+}
+
+.glow:hover:after {
+    animation: pulse 2s 1s ease-out infinite;
+}
+
+@keyframes  pulse {
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+
+
+.constant-glow {
+    background: #2e3537;
+    padding: 0.75em 1.5em;
+    border: 3px solid white;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: auto;
+    position: relative;
+    display: grid;
+    place-items: center;
+    transition: 0.5s;
+}
+
+.constant-glow:before, .constant-glow:after {
+    content: '';
+    position: absolute;
+    background-color: #FF0000;
+    height: 100%;
+    width: 60%;
+    z-index: -1;
+    opacity: 0.5;
+    border-radius: 15px;
+}
+
+.constant-glow {
+    color: #FF0000;
+    border-color: #FF0000;
+    text-shadow: 0 0 5px #FF0000;
+    box-shadow:
+        0 0 10px #FF0000,
+        0 0 20px #FF0000;
+    letter-spacing: 5px;
+}
+
+.constant-glow:before {
+    animation: pulse 2s ease-out infinite;
+}
+
+.constant-glow:after {
+    animation: pulse 2s 1s ease-out infinite;
+}
+
+@keyframes  pulse {
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+
+
+.gender-glow {
+    background: #fdfdfd;
+    padding: 0.75em 1.5em;
+    border: 3px solid white;
+    color: white;
+    text-transform: uppercase;
+   
+    letter-spacing: 3px;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: auto;
+    position: relative;
+    display: grid;
+    place-items: center;
+    transition: 0.5s;
+}
+
+.gender-glow:before, .glow:after {
+    content: '';
+    position: absolute;
+    background-color: #FF0000;
+    height: 100%;
+    width: 60%;
+    z-index: -1;
+    opacity: 0.5;
+    border-radius: 15px;
+}
+
+.gender-glow:hover {
+    color: #FF0000;
+    border-color: #FF0000;
+    text-shadow: 0 0 5px #FF0000;
+    box-shadow:
+        0 0 10px #FF0000,
+        0 0 20px #FF0000;
+    letter-spacing: 5px;
+}
+
+.gender-glow:hover:before {
+    animation: pulse 2s ease-out infinite;
+}
+
+.gender-glow:hover:after {
+    animation: pulse 2s 1s ease-out infinite;
+}
+
+@keyframes  pulse {
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+.gender-constant-glow {
+    background: #fdfdfd;
+    padding: 0.75em 1.5em;
+    border: 3px solid white;
+    color: white;
+    text-transform: uppercase;
+   
+    letter-spacing: 3px;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: auto;
+    position: relative;
+    display: grid;
+    place-items: center;
+    transition: 0.5s;
+}
+
+.gender-constant-glow:before, .glow:after {
+    content: '';
+    position: absolute;
+    background-color: #FF0000;
+    height: 100%;
+    width: 60%;
+    z-index: -1;
+    opacity: 0.5;
+    border-radius: 15px;
+}
+
+.gender-constant-glow {
+    color: #FF0000;
+    border-color: #FF0000;
+    text-shadow: 0 0 5px #FF0000;
+    box-shadow:
+        0 0 10px #FF0000,
+        0 0 20px #FF0000;
+    letter-spacing: 5px;
+}
+
+.gender-constant-glow:before {
+    animation: pulse 2s ease-out infinite;
+}
+
+.gender-constant-glow:after {
+    animation: pulse 2s 1s ease-out infinite;
+}
+
+@keyframes  pulse {
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}

@@ -1,69 +1,82 @@
 import React, { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import JSZip, { file } from "jszip";
+ 
 
-export default function Avatar({ uid, url,size, onUpload }) {
+export default function Avatar({ uid, url ,size, onUpload }) {
   const supabase = useSupabaseClient()
   const [avatarUrl, setAvatarUrl] = useState(null)
   const [uploading, setUploading] = useState(false)
 
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [imgSrc, setImgSrc] = useState([])
+  const [files, setFiles] = useState([]);
+
   useEffect(() => {
     if (url) console.log(url)
   }, [url])
 
 
+
   ///read images into hook
   const inputAvatar = (event) =>{
-    console.log(event.target.files)
-    const newFile = event.target.files[0]
-    setSelectedFiles(()=> [...selectedFiles, newFile]);
-    setImgSrc(()=>[...imgSrc, URL.createObjectURL(newFile)])
-    //console.log(imgSrc)
+    const uploadedFiles = Array.from(event.target.files);
+    setFiles((prevFiles) => [...prevFiles, ...uploadedFiles]);
+    
   } 
-
+  //delete images from hook
+  function handleDeleteClick(index){
+    setFiles((prevFiles) => {
+      const newFiles = [...prevFiles];
+      newFiles.splice(index, 1);
+      return newFiles;
+    });
+  }
+  //upload to supabase bucket
   const uploadAvatar = async (event) => {
     event.preventDefault()
     try {
       setUploading(true)
-      if (!selectedFiles) {
-        throw new Error('You must select an image to upload.')
+      if (files.length < 1) {
+        setUploading(false)
+        throw new Error('You must select an image to upload.')      
       }
 
     const zip = new JSZip();
     const promises = [];
 
-    for (let i = 0; i < selectedFiles.length; i++) {
-      promises.push(
+    for (let i = 0; i < files.length; i++) {
+      promises.push (
         new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.onload = (event) => {
-            zip.file(selectedFiles[i].name, event.target.result);
+           // console.log('onload')
+            zip.file(files[i].name, event.target.result);
             resolve();
           };
           reader.onerror = (error) => reject(error);
-          reader.readAsArrayBuffer(selectedFiles[i]);
+          reader.readAsArrayBuffer(files[i]);
         })
       );
     }
-
+    
     try{ 
       await Promise.all(promises)
+
       const content = await zip.generateAsync({ type: "blob" });
+      
       //const fileName = `${uid}.${(Math.random()*100000).toString().split('.')[0]}`
       const fileName = `${uid}`+ "data.zip"
       const filePath = `${fileName}`
       onUpload(filePath)
-      let { error: uploadError } = await supabase.storage
+      let {  error: uploadError } = await supabase.storage
         .from('avatars')
-        .upload(filePath, content, { upsert: true })
+        .upload(uid, content, { upsert: true })
 
       if (uploadError) {
         throw uploadError
       }
 //selectedFiles.map((file) => URL.createObjectURL(file))
     } 
+    
     ////////////////////////////////////
     
 
@@ -92,7 +105,7 @@ export default function Avatar({ uid, url,size, onUpload }) {
 }
 
   return (
-    <div>
+    <div className="m-5 p-5">
       {/* {avatarUrl ? (
         // <img
         //   src={avatarUrl}
@@ -106,42 +119,31 @@ export default function Avatar({ uid, url,size, onUpload }) {
       )} */}
       <div style={{ width: size }}>
         <label className="button primary block" htmlFor="single">
-          {uploading ? 'Uploading ...' : 'Upload'}
+          {uploading ? 'Uploading ...' : 'upload'}
         </label>
 
-        <button onClick={uploadAvatar} > upload avatar to database</button>
+       {/* <button onClick={uploadAvatar} > Add sample image</button> */}
 
         <br></br>
-        <input style={{
-            visibility: 'hidden',
-            position: 'absolute',
-          }}
-          type="file"
-          id="single"
-          accept="image/*" 
-          onChange={inputAvatar} 
-          /> 
+
+        <form onSubmit={uploadAvatar}>
+          <input type="file" multiple onChange={inputAvatar} />
+          <button type="submit">Upload</button>
+        </form>
     
     </div>
     <div>
-      {selectedFiles &&  
-        <p>Files selected: {selectedFiles.length}</p>
-      }
-      { imgSrc ? (
-       <div>
-          {imgSrc.map((img)=> {
-            return <div key={img}>
-              <img src={img} 
-              alt="img"
-              
-              style={{ height: size, width: size }}/>
-              {console.log(img)}
+    
+
+      {files.length > 0 && (
+        <div>
+          {files.map((file, index) => (
+            <div key={file.name}>
+              <img src={URL.createObjectURL(file)} alt={file.name} />
+              <button onClick={() => handleDeleteClick(index)}>Delete</button>
             </div>
-          })}
-      </div>
- 
-      ) :  (
-        <div>insert imagges</div>
+          ))}
+        </div>
       )}
     </div>
     </div>
