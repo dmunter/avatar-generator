@@ -50,7 +50,7 @@ export default function SubmitModel({formList}){
         })
         const re = await res.json()
         console.log(re)
-
+        
 
 
         //console.log(data)
