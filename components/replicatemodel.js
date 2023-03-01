@@ -45,12 +45,12 @@ export default function SubmitModel({formList}){
         // const re = await res.json()
         // console.log(re)
 
-        const res= await fetch('/api/trainreplicate',{
-            method: 'GET'
+        const res= await fetch('/api/createimg',{
+            method: 'POST'
         })
         const re = await res.json()
         console.log(re)
-        
+
 
 
         //console.log(data)

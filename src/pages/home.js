@@ -60,6 +60,7 @@ export default function Home(){
         <button onClick={()=> get()}>
             Getom some json
         </button>
+       
         </div>
     )
 }

@@ -3,7 +3,7 @@ import { useUser, useSupabaseClient ,useSession} from '@supabase/auth-helpers-re
 import Avatar from './Upload'
 import Form from './form'
 import SubmitModel from './replicatemodel'
-
+import Image from 'next/image'
 export default function Account({ session }) {
   const supabase = useSupabaseClient()
 
@@ -134,6 +134,13 @@ export default function Account({ session }) {
               
         />
         <SubmitModel formList = {formList}/>
+        <Image
+        
+        src="/animated/blocks.svg"
+       height={10}
+       width={10}
+        alt="Follow us on Twitter"
+        />
     </div>
   )
 }
