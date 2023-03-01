@@ -100,10 +100,10 @@ export default function Home() {
           return
         }else{
             return(
-            <div className="h-48 w-48 m-5 border border-gray-700 bg-accent rounded-md" >
+            <div key={key}className="h-48 w-48 m-5 border border-gray-700 bg-accent rounded-md" >
               <p className="p-1 text-neutral">{key.slice(26,-4)}</p>
               <Image className="relative rounded-md hover:brightness-75 " src={key.substring(6)}  width={80} height={80} alt="image"/>
-              <p>{console.log(key.substring(6))}</p>
+              <p>{}</p>
             </div>)
           }       
         })}
