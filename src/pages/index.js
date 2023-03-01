@@ -1,12 +1,17 @@
 import Link from 'next/link'
 import 'tailwindcss/tailwind.css'
 import Image from 'next/image'
-
+import { useState } from 'react'
 import images from '../../components/utilites/images';
 
 export default function Home() {
   const imageKeys = Object.keys(images);
+  const [isImageReady, setIsImageReady] = useState()
 
+  const handleImageLoad=()=>{
+      setIsImageReady(true)
+  }
+  
 
 
   return (
@@ -22,10 +27,10 @@ export default function Home() {
       </div>
 
       <div className="showcase m-w-fit font-bold text-white text-center">
-          <div className="... ring ring-blue-500 ring-offset-3 rounded-md text-6xl leading-normal">
+          <div className="... ring  bg-black/30 ring-blue-500 ring-offset-3 rounded-md text-6xl leading-normal">
             <h1 className="">Create your own </h1>
-            <h2 className=" uppercase decoration-blue-500 text-transparent font-extrabold bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">picture perfect</h2>
-            <h1>AI avatars</h1>
+            <h2 className="uppercase decoration-blue-500 text-transparent font-extrabold bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">picture perfect</h2>
+            <h1 className="">AI avatars</h1>
             <div className="text-lg leading-7">
               <p>As seen on tik tok! 📱</p>
               <p>Receive 100+ photos of yourself as an AI generated image 🖼️</p>
@@ -100,9 +105,10 @@ export default function Home() {
           return
         }else{
             return(
-            <div key={key}className="h-48 w-48 m-5 border border-gray-700 bg-accent rounded-md" >
-              <p className="p-1 text-neutral">{key.slice(26,-4)}</p>
-              <Image className="relative rounded-md hover:brightness-75 " src={key.substring(6)}  width={80} height={80} alt="image"/>
+            <div key={key}className="h-48 w-48 m-5 border flex-shrink border-gray-700 bg-accent rounded-md" >
+              <p className="p-1 italic text-neutral">{key.slice(26,-4)}</p>
+              <div className="text-center"> {!isImageReady && 'loading image...'}</div>
+              <Image className="relative rounded-md hover:brightness-75" onLoadingComplete={()=> handleImageLoad()}  src={key.substring(6)} loading="lazy" unoptimized={true}  width={150} height={100} alt="image"/>
               <p>{}</p>
             </div>)
           }       
