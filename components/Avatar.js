@@ -92,7 +92,7 @@ export default function Avatar({ uid,  onChange }) {
       {files.length > 0 && (
         <div className=" flex   m-10 flex-wrap justify-around content-center">
           {files.map((file, index) => (
-            <div className="border border-white"  onClick={() => handleDeleteClick(index)} className="border border-white relative h-24 w-24 hover:opacity-80 hover:rounded-sm hover:cursor-pointer" key={file.name}>
+            <div onClick={() => handleDeleteClick(index)} className=" relative h-24 w-24 hover:opacity-80 hover:rounded-sm hover:cursor-pointer" key={file.name}>
               <img src={URL.createObjectURL(file)} alt={file.name} />
                
             </div>

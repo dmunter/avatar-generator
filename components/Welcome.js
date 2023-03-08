@@ -39,7 +39,7 @@ export default function Welcome(){
                 </div>
                 <div className="flex justify-around p-1">
                     <div className="p-1 bg-white  rounded-xl" ><img src="/ben_yes.png" className="relative" /></div>
-                    <div className= "p-1 bg-white rounded-xl"> < img className="" src="/ben_no.png" className="relative "/></div>
+                    <div className= "p-1 bg-white rounded-xl"> < img  src="/ben_no.png" className="relative "/></div>
                 </div>
             </div>
 
