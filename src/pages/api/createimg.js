@@ -25,7 +25,7 @@ export default async function  handler(req, res) {
                 },
                 
             body: JSON.stringify({  
-                version: "0c9d701f2943566baebaaa630e5bc894dbbc6f07b483a798ffb1ad21982251a5"     ,
+                version: "0c9d701f2943566baebaaa630e5bc894dbbc6f07b483a798ffb1ad21982251a5"   ,
                 input: {
                     prompt: 'closeup portrait of cjw as a as a flight attendant, highly detailed, proffessinal look, linkedin,  intricate details, bright colors, golden hour, getty images, suit and tie, digital painting, rossdraws.',
                     negative_prompt: 'two heads, two bodies',
@@ -34,9 +34,8 @@ export default async function  handler(req, res) {
                 webhook_events_filter: [ "completed"]
                 })
             });
-        resp = await response.json()
-        
-        console.log(Object.keys(resp))
+        resp = await response.json()  
+        console.log(resp)
         // if(!resp){
         //         resp = json(resp.error)
         //         res.status(500).json(resp)

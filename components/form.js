@@ -20,7 +20,7 @@ export default function Form ({getItems}){
             if(!formList.styles.includes(curr)){
                 const ar = formList.styles
                 ar.push(curr)
-                console.log(ar)
+                console.log(formList)
                 setFormList({gender: formList.gender , styles: ar})
 
                 setSelectedStyles([...selectedStyles, index])
@@ -45,15 +45,24 @@ export default function Form ({getItems}){
         {id: 4, type: "cat"}
     ]
     const styles = [
-        {id: 1 , style: "astronaut"},
-        {id: 2 , style: "cowboy"},
-        {id: 3 , style: "painting"},
-        {id: 4 , style: "swimmer"},
-        {id: 5 , style: "althete"},
-        {id: 6 , style: "model"},
-        {id: 7 , style: "space"},
-        {id: 8 , style: "golfer"},
-        {id: 9 , style: "gym"}
+        {id: 1 , style: "hobbit"},
+        {id: 2 , style: "viking"},
+        {id: 3 , style: "harry potter"},
+        {id: 4 , style: "elf"},
+        {id: 5 , style: "samurai"},
+        {id: 6 , style: "pirate"},
+        {id: 7 , style: "cyborg"},
+        {id: 8 , style: "zombie"},
+        {id: 9 , style: "witch"},
+
+        {id: 10 , style: "jedi"},
+        {id: 11 , style: "necromancer"},
+        {id: 12 , style: "humanoid"},
+        {id: 13 , style: "cyberpunk"},
+        {id: 14, style: "archer"},
+        {id: 15, style: "android"}, 
+        {id: 16, style: "cold winter"},
+
     ]
 
     // styles.forEach((item) )
@@ -75,23 +84,30 @@ export default function Form ({getItems}){
     const genderPulse= "gender-constant-glow"
     return(
         <div className="m-10 ">
-            <div className="image-container" onClick={show}> show the console</div>
 
-            <div className=""> 
-                <div className="grid justify-items-center h-10 ..."><div className=""> select your profile</div></div>
+            
+                <div className="grid m-4 justify-items-center h-10 ..."><div className="text-neutral  bg-neutral-200 p-4  rounded-sm flex-col w-auto "> Select your profile</div></div>
                 
-            </div>    
+             
+
+
             <div className="flex-container flex h-auto ">    
-                {
-                genders.map((gender, index) =>(
-                    <div key = {gender.type}
-                    className={formList.gender == gender.type ? genderPulse : genderHover}
-                    onClick={()=> setProfile(index+1, gender.type)}
-                    >
-                        <img className= "relative gender-images" src={"/"+gender.type+ ".png"} alt={gender.type} />
-                     </div>
-                ))
-                }
+                <div key="man" className={formList.gender =='man' ? genderPulse : genderHover }
+                    onClick={()=> setProfile(1, 'man')}>
+                    <img className= "relative gender-images" src="/man-toilet-icon.svg" alt={"Man"} />
+                </div>
+                <div key="woman" className={formList.gender =='woman' ? genderPulse : genderHover }
+                    onClick={()=> setProfile(2, 'woman')}>
+                    <img className= "relative gender-images" src="/women-toilet-icon.svg" alt={"woman"} />
+                </div>
+                <div key="dog" className={formList.gender =='dog' ? genderPulse : genderHover }>
+                    <div>comming soon</div>
+                    <img className= "relative gender-images" src="/dog.png" alt={"dog"} />
+                </div>
+                <div key="cat" className={formList.gender =='cat' ? genderPulse : genderHover }>
+                    <div>comming soon</div>
+                    <img className= "relative gender-images" src="/cat.png" alt={"cat"} />
+                </div>
             </div>
             
 

@@ -1,16 +1,24 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useUser, useSupabaseClient ,useSession} from '@supabase/auth-helpers-react'
-import Avatar from './Upload'
-import Form from './form'
-import SubmitModel from './replicatemodel'
-import Image from 'next/image'
+
+import Customize  from './Customize'
+
+
+
 export default function Account({ session }) {
   const supabase = useSupabaseClient()
 
   const user = useUser()
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
+
   const [formList, setFormList] = useState({gender: '', styles: ''})
+  
+  const getItems = useCallback((data)=>{
+      console.log(data)
+      setFormList(data)
+    },[formList])
+
 
 
   useEffect(() => {
@@ -18,13 +26,11 @@ export default function Account({ session }) {
   }, [session])
 
   async function getProfile() {
-
     try {
       setLoading(true)
-
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, stripe_customer`)
+        .select(`user_email`)
         .eq('id', user.id)
         .single()
 
@@ -38,7 +44,7 @@ export default function Account({ session }) {
 
 
     } catch (error) {
-      alert('Error loading user data!')
+      alert(error)
       console.log(error)
     } finally {
       setLoading(false)
@@ -68,34 +74,10 @@ export default function Account({ session }) {
   // }
   
   //get form data from form.js
-  const getItems = useCallback((data)=>{
-    console.log(data)
-    setFormList(data)
-  },[formList])
+
   
   return (
-    <div className="form-widget bg-white">
-      <div>
-        <button className="button block m-5" onClick={() => supabase.auth.signOut()}>
-          Sign Out
-        </button>
-      </div>
-      <div className="m-5 p-5">
-        <label htmlFor="email">Email</label>
-        <br></br>
-        <input id="email" type="text" value={session.user.email} disabled />
-      </div>
-      <div>
-        <label htmlFor="username"></label>
-        <input
-          id="username"
-          type="text"
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        
-      </div>
-      
+    <div className="form-widget bg-white">  
       {/* <CreateStripeCustomer props = {user} />  */}
 
       <div>
@@ -106,41 +88,11 @@ export default function Account({ session }) {
         >
           
         </button> */}
-        {loading ? 'Loading ...' : 'Update'}
+        {/* {loading ? 'Loading ...' : 'Update'} */}
       </div>
 
-      
+      <Customize />
 
-      <div className="form-widget">
-        <Avatar
-            uid={user.id}
-            //url={avatar_url}
-            size = {150}           
-            onUpload={(url) => {
-              //setAvatarUrl(url)
-              //updateProfile({ username, website, avatar_url: url })
-            }}
-          />
-        </div>
-        <div>
-          {/* {avatar_url && 
-          <div>
-            your images were successfully uploaded!
-          </div>  
-          } */}
-        </div>
-
-        <Form getItems = {getItems}
-              
-        />
-        <SubmitModel formList = {formList}/>
-        <Image
-        
-        src="/animated/blocks.svg"
-       height={10}
-       width={10}
-        alt="Follow us on Twitter"
-        />
     </div>
   )
 }

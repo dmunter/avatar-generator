@@ -3,11 +3,10 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
 export default async function handler(req, res) {
 
-    const  customer_email  = req.body.email;
-    const stripe_customer = req.body.stripe_customer;
+    const  customerEmail = req.body.email;
 
-    console.log(customer_email)
-    console.log(stripe_customer)
+
+    console.log(req.body)
 
     if(!req.body.email){
         return res.status(400).json({error: "invalid credentails: Try refresing the session"})
@@ -25,10 +24,8 @@ export default async function handler(req, res) {
           },
         ],
        
-        customer: stripe_customer,
-        
         mode: 'payment',
-        success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${req.headers.origin}/stripecheckout?success={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/?canceled=true`,
       });
       res.redirect(303, session.url);

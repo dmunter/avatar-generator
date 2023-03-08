@@ -62,9 +62,9 @@ export default function Home() {
       
       </div>
 
-      <div className="bg-neutral flex flex-wrap justify-around border border-gray-700 flex-wrap p-10 relative mt-20  z-10 shadow-2xl  ...">
+      <div className="bg-neutral flex flex-wrap justify-around border border-gray-700 flex-wrap p-10 relative mt-20  z-10  inset-shadow  ...">
 
-      <div className="card w-96 m-4 bg-base-100  shadow-xl shadow-xl">
+      <div className="card w-96 m-4 bg-base-100 shadow-xl shadow-xl">
           <div className="h-32 w-32 m-auto mt-5 relative">
             <Image src="/animated/radio.svg" layout="fill" alt="Shoes" className="rounded-xl" />
           </div>
@@ -130,8 +130,8 @@ export default function Home() {
     </div>
 
 
-<div className="bg-neutral border border-gray-700 p-10">
-      <div className="explain m-auto p-15 w-2/3 bg-neutral border border-gray-700  ">
+<div className="bg-neutral border border-gray-700 p-10 whats-going-on">
+      <div className="explain m-auto  w-2/3 bg-neutral border border-gray-700  ">
         <div className="container p-4 text-white ">
           <h3 className="text-2xl leading-normal ">Whats actually going on?</h3>
           <p> Dreambooth is an open-source deep learning generation model used to fine-tune artifical intelligence imaging models and was developed by researchers like Nataniel Ruiz from Google Research and Boston University in 2022. It lets us teach artificial intelligence imaging models who you are by training it on your photos and then generate any image in any style you want with you in it!

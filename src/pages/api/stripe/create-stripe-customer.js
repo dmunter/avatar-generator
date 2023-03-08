@@ -15,7 +15,6 @@ export default async function  handler(req, res) {
 
   //console.log(user)
 
-  const { id } = await JSON.parse(req.body)
   const { email } = await JSON.parse(req.body)
 
   

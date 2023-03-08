@@ -71,7 +71,7 @@
 .glow:before, .glow:after {
     content: '';
     position: absolute;
-    background-color: #FF0000;
+    background-color: #36D399;
     height: 100%;
     width: 60%;
     z-index: -1;
@@ -80,12 +80,12 @@
 }
 
 .glow:hover {
-    color: #FF0000;
-    border-color: #FF0000;
-    text-shadow: 0 0 5px #FF0000;
+    color: #36D399;
+    border-color: #36D399;
+    text-shadow: 0 0 5px #36D399;
     box-shadow:
-        0 0 10px #FF0000,
-        0 0 20px #FF0000;
+        0 0 10px #36D399,
+        0 0 20px #36D399;
     letter-spacing: 5px;
 }
 
@@ -126,7 +126,7 @@
 .constant-glow:before, .constant-glow:after {
     content: '';
     position: absolute;
-    background-color: #FF0000;
+    background-color: #36D399;
     height: 100%;
     width: 60%;
     z-index: -1;
@@ -135,12 +135,12 @@
 }
 
 .constant-glow {
-    color: #FF0000;
-    border-color: #FF0000;
-    text-shadow: 0 0 5px #FF0000;
+    color: #36D399;
+    border-color: #36D399;
+    text-shadow: 0 0 5px #36D399;
     box-shadow:
-        0 0 10px #FF0000,
-        0 0 20px #FF0000;
+        0 0 10px #36D399,
+        0 0 20px #36D399;
     letter-spacing: 5px;
 }
 
@@ -182,7 +182,7 @@
 .gender-glow:before, .glow:after {
     content: '';
     position: absolute;
-    background-color: #FF0000;
+    background-color: #36D399;
     height: 100%;
     width: 60%;
     z-index: -1;
@@ -191,12 +191,12 @@
 }
 
 .gender-glow:hover {
-    color: #FF0000;
-    border-color: #FF0000;
-    text-shadow: 0 0 5px #FF0000;
+    color: #36D399;
+    border-color: #36D399;
+    text-shadow: 0 0 5px #36D399;
     box-shadow:
-        0 0 10px #FF0000,
-        0 0 20px #FF0000;
+        0 0 10px #36D399,
+        0 0 20px #36D399;
     letter-spacing: 5px;
 }
 
@@ -240,7 +240,7 @@
 .gender-constant-glow:before, .glow:after {
     content: '';
     position: absolute;
-    background-color: #FF0000;
+    background-color: #36D399;
     height: 100%;
     width: 60%;
     z-index: -1;
@@ -249,12 +249,12 @@
 }
 
 .gender-constant-glow {
-    color: #FF0000;
-    border-color: #FF0000;
-    text-shadow: 0 0 5px #FF0000;
+    color: #36D399;
+    border-color: #36D399;
+    text-shadow: 0 0 5px #36D399;
     box-shadow:
-        0 0 10px #FF0000,
-        0 0 20px #FF0000;
+        0 0 10px #36D399,
+        0 0 20px #36D399;
     letter-spacing: 5px;
 }
 

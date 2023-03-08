@@ -7,7 +7,7 @@ export default  function  SignIn() {
   const supabase = useSupabaseClient()
 
   const Redirect=()=>{
-    Router.push('/home')
+    Router.push('/success')
   }
   const redirectToIndex=()=>{
     Router.push('/')
