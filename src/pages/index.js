@@ -2,8 +2,8 @@ import Link from 'next/link'
 import 'tailwindcss/tailwind.css'
 import Image from 'next/image'
 import { useState } from 'react'
-import images from '../../components/utilites/images';
-
+import {images} from '../../components/utilites/images';
+import Footer from '../../components/layout/footer';
 export default function Home() {
   const imageKeys = Object.keys(images);
   const [isImageReady, setIsImageReady] = useState()
@@ -25,6 +25,7 @@ export default function Home() {
         <div className="halie-background3"></div>
         <div className="halie-background4"></div>          
       </div>
+      <div className="background-extended "></div>
 
       <div className="showcase m-w-fit font-bold text-white text-center">
           <div className="... ring  bg-black/30 ring-blue-500 ring-offset-3 rounded-md text-6xl leading-normal">
@@ -35,17 +36,24 @@ export default function Home() {
               <p>As seen on tik tok! 📱</p>
               <p>Receive 100+ photos of yourself as an AI generated image 🖼️</p>
               <p>Your privacy is important. Your data is never shared! 🤫 </p>
+              <p>Chose between 50+ different styles 👗</p>
+              <p>Receive photos to show off on social media! 📷</p>
+              <br></br>
             </div>
           </div>      
       </div>
-
+{/* <Link className="text-3xl  margin-10   text-white font-bold text-center ... " href='/signin'> <div className="">  Create AI avatars now  </div></Link> */}
       <div className="showcase-end flex pb-0 flex-col justify-self-center items-center border border-gray-700 bg-neutral p-5  shadow-lg ...">
 
         <div className="flex flex-wrap  items-center space-x-2 space-y-2 justify-evenly ">
-          <div className="m-auto min-w-fit p-5 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 w-1/4 rounded-lg text-center ...">
-          <Link className="text-3xl  margin-10   text-white font-bold text-center ... " href='/signin'> <div className="">  Create AI avatars now  </div></Link>
-          </div>
-          <buton className="btn m-auto w-15  border text-center  border-gray-700 sel"> Create account  </buton>
+        <Link className=" font-bold uppercase text-white "  href='/signin'>
+            <div className="m-auto min-w-fit p-5 gradient-button  hover:brightness-75  h-auto w-1/4 rounded-lg text-center focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ...">
+              <div className="">  Create AI avatars now  </div>
+              {/* <div className="text-xs font-thin ">  <p>950+ phoots already created</p> </div> */}
+            </div>
+        </Link>
+          
+          <button className="btn m-auto w-15  border text-center  border-gray-700 sel"> Create account  </button>
         </div>
         
         
@@ -57,13 +65,12 @@ export default function Home() {
             <img className="h4 relative h-3 w-auto" src="/paymenticons/logo-grab-pay.svg"/>
             <img className="h4 relative h-3 w-auto" src="/paymenticons/logo-giropay.svg"/>         
           </div>
-          <div className="flex h-10 "><p className="italic text-sm">one time payment. no subscription</p></div>    
+          <div className="flex h-10 center justify-center"><p className="italic text-sm">one time payment. no subscription</p></div>    
         </div>
       
       </div>
 
       <div className="bg-neutral flex flex-wrap justify-around border border-gray-700 flex-wrap p-10 relative mt-20  z-10  inset-shadow  ...">
-
       <div className="card w-96 m-4 bg-base-100 shadow-xl shadow-xl">
           <div className="h-32 w-32 m-auto mt-5 relative">
             <Image src="/animated/radio.svg" layout="fill" alt="Shoes" className="rounded-xl" />
@@ -95,10 +102,11 @@ export default function Home() {
  
           </div>
         </div>
+        
       </div>
     
 
-    <div className="width-100 bg-neutral p-3">
+    <div className="width-100 bg-neutral ">
       <div className="flex  justify-around flex-wrap z-10 m-2 ">
         {imageKeys.map(key => {
         if(key.length < 20){
@@ -122,8 +130,8 @@ export default function Home() {
             <p className="text-textwhite text-center p-5 "> We recommend 10 close-ups, 3 side profiles, 5 chest-up and 3 full body shots. Variety is key: facial expressions, locations, backgrounds and perspectives should all be different. Look away from the camera too. High quality photos work best; minimal makeup is advised as it may be exaggerated in the photos. No nudes, swimwear/underwear is OK.</p>
         </div>
     </div>
-    <div>
-        <div className="flex flex-wrap bg-neutral justify-evenly items-center flex-grow border border-gray-700">
+    <div className="">
+        <div className="flex p-10 flex-wrap bg-neutral justify-evenly items-center flex-grow border border-gray-700">
           <img className="relative rounded-2xl m-4 ml-1 mr-1" src='/benyes.png'/>
           <img className="relative rounded-2xl m-4 ml-1 mr-1" src='/benno.png'/> 
         </div>
@@ -140,32 +148,21 @@ export default function Home() {
       </div>
 </div>
 
-      
-      
-<footer className="footer p-10 bg-neutral text-neutral-content">
-  <div>
-    <span className="footer-title">Services</span> 
-    <a className="link link-hover">Branding</a>
-    <a className="link link-hover">Design</a>
-    <a className="link link-hover">Marketing</a>
-    <a className="link link-hover">Advertisement</a>
-  </div> 
-  <div>
-    <span className="footer-title">Company</span> 
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
-  </div> 
-  <div>
-    <span className="footer-title">Legal</span> 
-    <a className="link link-hover">Terms of use</a>
-    <a className="link link-hover">Privacy policy</a>
-    <a className="link link-hover">Cookie policy</a>
-  </div>
-</footer>
-    
+<div className ="bg-neutral">
+  <div className="FAQs flex flex-col align-center justify-centers items-center text-center text-white md:p-32 p-12">
+    <h1 className="text-2xl font-semibold">What file formats of photos do you accept?</h1>
+    <p className="p-10">Right now we support JPG, PNG, WebP, HEIC, JFIF, TIFF and RAW. We don't support AVIF or GIF! </p>
+    <h1 className="text-2xl font-semibold">How long will it take to receive my avatars? </h1>
+    <p className="p-10">Right now it'll take about 27 minutes (based on current processing times) to generate your avatars. </p>
+    <h1 className="text-2xl font-semibold">What will you do with my photos? </h1>
+    <p className="p-10">Great question. We only use them to train the AI model, render your avatars and then delete both the input photos and the AI model from our servers and the GPU API's servers (where it's processed) within 24 hours. Beware of other apps that generate profile photos and avatars as most store your data forever to mine it which means they can generate any image (like deepfakes) with your face in it forever. Some are even affiliated with foreign governments with might get your data! </p>
 
+  </div>
+</div>
+
+
+
+<Footer/>
 </div>
 )
 }

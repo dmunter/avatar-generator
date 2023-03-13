@@ -21,7 +21,7 @@ export default function PreviewPage() {
     const [customerEmail, setCustomerEmail] = useState()
 
     const [hasRedirect, setHasRedirected] = useState(false)
-   
+    const [isFetching, setIsFetching] = useState(true)
     
    //create a stripe id
     
@@ -33,8 +33,8 @@ export default function PreviewPage() {
         .from('profiles')
         .select('*')
         .eq('id', session.user.id)
-        
 
+        try{
         if(!userData[0]?.stripe_customer?.length){
           console.log(userData[0])
           const request = await fetch('/api/stripe/create-stripe-customer',{
@@ -45,6 +45,8 @@ export default function PreviewPage() {
           })
           const result = await request.json()         
           console.log(result)
+        }} catch (error){
+          console.log(e)
         }
 
 
@@ -52,7 +54,8 @@ export default function PreviewPage() {
 
         if(userData[0].paid ==true){
           Router.push('/home')
-        }   
+        }  
+        setIsFetching(false) 
       }
 
       if(isLoading!=true){
@@ -83,44 +86,55 @@ export default function PreviewPage() {
     }
    
   }, [success, canceled]);
-
+const getStripe=async()=>{
+  const response = await fetch('/api/stripe/checkout_sessions', {
+    method: 'POST',
+     body: JSON.stringify({email: customerEmail })
+  })
+  const resp = await response.json()
+  if(resp.url){Router.push()}
+}
 
   return (
     <div  className="h-screen flex items-center justify-center">
       { !hasRedirect &&
-      <form className="" action='/api/stripe/checkout_sessions' method="POST"  > 
-      <label for ="email"></label>
-      <input name="email" className='hidden' defaultValue={customerEmail}></input>
-      
-      <button 
-              className="m-auto relative bg-white block rounded-xl border border-gray-100 p-8 shadow-xl"
-                
-              > 
-              <span
-                  className="absolute right-4 top-4 rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600"
-              >
-                  $13.99
-              </span>
+      <div>
+              <div 
+                className="m-auto relative  bg-white block rounded-xl border border-gray-100 p-8 shadow-xl"> 
+                <span className="absolute right-4 top-4 rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600">
+                    $13.99
+                </span>
 
-              <div className="mt-4 text-gray-500 ">
-                  <h3 className="mt-4 text-xl font-extrabold text-3xl font-bold text-gray-900">What do you get?</h3>
-
-                  <div className="mt-2 text-sm sm:block p-5">
-                      <ul>
-                          <li>✨ 100+ custom photos</li>
-                          <li>✨ 4k photo realistic images</li>
-                          <li>✨ 20+ different styles to chose from</li>
-                          
-                      </ul>
+                <div className="mt-1 text-gray-500 ">
+                  <div className="flex justify-center">
+                    <h3 className="mt-4 text-xl font-extrabold text-3xl font-bold text-gray-900">What do you get?</h3>
                   </div>
-                  
-              </div>
-              <div className="rounded-full leading-10 min-h-25 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ...">
-                  Get images 
-              </div>
-      </button>
-      
-        </form> 
+                    <div className=" text-sm sm:block p-5">
+                        <ul>
+                            <li>✨ 100+ custom photos</li>
+                            <li>✨ 4k photo realistic images</li>
+                            <li>✨ 20+ different styles to chose from</li>
+                            
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div className="flex justify-center">
+                  {!isFetching ? ( 
+                  <form method="POST" action="/api/stripe/checkout_sessions" className="flex justify-center rounded-full gradient-button w-48 leading-10 h-10 ">
+                            <label htmlfor ="email"></label>
+                            <input name="email" className='hidden' defaultValue={customerEmail}></input>
+                            <button className="text-neutral-100 bold uppercase font-semibold pr-10 pl-10" type="submit">Get Images</button>
+                  </form>
+                  ) : (
+                    <button className="rounded-full gradient-button text-neutral-100 bold uppercase font-semibold w-48 leading-10 h-10 flex justify-center" >
+                      <img className="relative z-10 h-10 w-10" src='/animated/loading.svg'/>
+                    </button>
+                  )}
+                </div>
+
+              </div>    
+        </div> 
       }
        
         </div>

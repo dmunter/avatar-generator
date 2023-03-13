@@ -163,16 +163,16 @@
 
 .gender-glow {
     background: #fdfdfd;
-    padding: 0.75em 1.5em;
-    border: 3px solid white;
+    padding: 5px;
+    border: 1px solid white;
     color: white;
     text-transform: uppercase;
    
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     font-weight: 600;
-    border-radius: 15px;
+    border-radius: 4px;
     cursor: pointer;
-    margin: auto;
+    margin: 8px;
     position: relative;
     display: grid;
     place-items: center;
@@ -197,7 +197,7 @@
     box-shadow:
         0 0 10px #36D399,
         0 0 20px #36D399;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
 }
 
 .gender-glow:hover:before {
@@ -220,21 +220,23 @@
 
 
 .gender-constant-glow {
+
     background: #fdfdfd;
-    padding: 0.75em 1.5em;
-    border: 3px solid white;
+    padding: 5px;
+    border: 1px solid white;
     color: white;
     text-transform: uppercase;
-   
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     font-weight: 600;
-    border-radius: 15px;
+    border-radius: 4px;
     cursor: pointer;
-    margin: auto;
+    margin: 8px;
     position: relative;
     display: grid;
     place-items: center;
     transition: 0.5s;
+
+
 }
 
 .gender-constant-glow:before, .glow:after {

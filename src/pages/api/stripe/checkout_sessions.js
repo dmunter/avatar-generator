@@ -6,9 +6,9 @@ export default async function handler(req, res) {
     const  customerEmail = req.body.email;
 
 
-    console.log(req.body)
+    console.log(customerEmail)
 
-    if(!req.body.email){
+    if(!customerEmail){
         return res.status(400).json({error: "invalid credentails: Try refresing the session"})
     }
 
@@ -23,15 +23,16 @@ export default async function handler(req, res) {
             quantity: 1,
           },
         ],
-       
+        customer_email: customerEmail,
         mode: 'payment',
         success_url: `${req.headers.origin}/stripecheckout?success={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/?canceled=true`,
       });
+      //console.log(session.url)
       res.redirect(303, session.url);
     } catch (err) {
       res.status(err.statusCode || 500).json(err.message);
-    }
+    } 
   } else {
     res.setHeader('Allow', 'POST');
     res.status(405).end('Method Not Allowed');

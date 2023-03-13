@@ -25,7 +25,6 @@ export default async function  handler(req, res) {
     email: email,
   })
   
-
   await supabaseServerClient.from('profiles')
   .update({'stripe_customer': customer.id})
   .eq('id', user.id)

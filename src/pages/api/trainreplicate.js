@@ -9,7 +9,7 @@ export default async function  handler(req, res) {
         data: { user },
       } = await supabaseServerClient.auth.getUser()
 
-   
+    console.log(req.method)
 
     let resp;
     ////METHOD POST
@@ -28,7 +28,7 @@ export default async function  handler(req, res) {
                     instance_prompt: 'A photo of a cjw person',
                     class_prompt: 'A photo of a person',
                     instance_data: request.instance_data,
-                    max_train_steps: 2000
+                    max_train_steps: 800
                 },
                 model: request.model_name,
                 trainer_version: "cd3f925f7ab21afaef7d45224790eedbb837eeac40d22e8fefe015489ab644aa",
@@ -38,17 +38,19 @@ export default async function  handler(req, res) {
 
         resp = await response.json()
         console.log(resp)
-        // await supabaseServerClient.from('user_models')
-        // .update({"model_status": resp})
-        // .eq('model_name', req.body.model_name)
-      
+
+        await supabaseServerClient.from('user_models')
+        .update({'model_status': resp})
+        .eq('model_name', res.model)
+        
+        res.status(200).json(resp)
         // if(!resp.error){
         //         res.status(500).json(resp)
         // } 
 
     } else if(req.method == 'DELETE'){
+
         const response = await fetch('https://api.replicate.com/v1/models/dmunter/drewmuntercoyotesusdedu969/versions/1af7863d2322842bdc2910fdc4b3a52039bc1dc2b4e57c71218e98ca5752e56e',{
-            method: 'DELETE',
             headers: {
                 'Authorization': `Token ${process.env.REPLICATE_SECRET}`,
             },

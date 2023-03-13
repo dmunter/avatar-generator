@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import Header from '../../components/layout/header'
 import Welcome from '../../components/Welcome'
 import Router from 'next/router'
-
+import Footer from '../../components/layout/footer'
 export default function Home(){
     const [state, setState] = useState(null)
   
@@ -21,23 +21,21 @@ export default function Home(){
                 setState(true)
             }
         }
-    }, [isLoading])
-
-
-
-
+    }, [isLoading,session])
 
     return(
-        <div className="">
+        <div className="container" >
              { !state ? ( 
                     <>Loading..</>
            ) : (
             // 
-            <>     
+            <div className="container">     
+            {/* <div className="bg-black w-100 h-50"> asdf</div> */}
             <Header />   
             <Welcome />                                    
-            <Account session ={session} />          
-            </>
+            <Account session ={session} />         
+            <Footer/>    
+            </div>
       )}
        
         </div>

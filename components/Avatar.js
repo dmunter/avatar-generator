@@ -7,7 +7,7 @@ export default function Avatar({ uid,  onChange }) {
   const [uploading, setUploading] = useState(false)
 
   const [uploadedSuccessfully, setUploadedSuccessfully] = useState()
-  const[errorMessage, setErrorMessage] = useState("")
+  const[errorMessage, setErrorMessage] = useState(null)
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
@@ -17,8 +17,22 @@ export default function Avatar({ uid,  onChange }) {
 
   ///read images into hook
   const inputAvatar = (event) =>{
+    const input_array = Array.from(event.target.files)
+    const doesExist = input_array.map((file)=> {
+      let curr= []
+      files.map((prevfile)=>{ if(prevfile.name == file.name){curr.push(true) }else{curr.push(false)}})
+      if(curr.includes(true)) {
+        return true}
+      else{ return false}
+    })
+    if(doesExist.includes(true)){//if image is already in file
+      setErrorMessage("cannot upload same file twice")
+      return
+    } 
+
     const uploadedFiles = Array.from(event.target.files);
     setFiles((prevFiles) => [...prevFiles, ...uploadedFiles]);  
+    setErrorMessage(null)
   } 
   //delete images from hook
   function handleDeleteClick(index){
@@ -59,7 +73,7 @@ export default function Avatar({ uid,  onChange }) {
 
 
   return (
-    <div className="bg-neutral text-white p-4">
+    <div className="bg-neutral text-white p-4  ">
       {/* {avatarUrl ? (
         // <img
         //   src={avatarUrl}
@@ -90,13 +104,13 @@ export default function Avatar({ uid,  onChange }) {
 
     <div>
       {files.length > 0 && (
-        <div className=" flex   m-10 flex-wrap justify-around content-center">
+        <div className=" flex m-10 flex-wrap justify-around  content-center">
           {files.map((file, index) => (
-            <div onClick={() => handleDeleteClick(index)} className=" relative h-24 w-24 hover:opacity-80 hover:rounded-sm hover:cursor-pointer" key={file.name}>
-              <img src={URL.createObjectURL(file)} alt={file.name} />
-               
-            </div>
+            <div onClick={() => handleDeleteClick(index)} className="relative max-w-fit hover:opacity-80 hover:rounded-sm hover:cursor-pointer" key={file.name}>
+              <img className="relative w-32" src={URL.createObjectURL(file)} alt={file.name} />            
+            </div>          
           ))}
+         
         </div>
       )}
     </div>
@@ -119,9 +133,18 @@ export default function Avatar({ uid,  onChange }) {
     </div> */}
 
     <div className="bg-success">
-      {uploadedSuccessfully && <p>{uploadedSuccessfully}</p>}
+      
     </div>
-
+    {errorMessage && 
+    <div class="m-10 z-10">
+      <div class="alert alert-error shadow-lg z-auto">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6 " fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>{errorMessage}</span>
+        </div>
+      </div>
+    </div>}
+    <div className="mt-5 border-t border-neutral-500"></div>
   </div>
   )
 }

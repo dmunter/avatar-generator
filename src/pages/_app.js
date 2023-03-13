@@ -7,8 +7,7 @@ import { themeChange } from 'theme-change'
 import Head from 'next/head'
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
-import { useEffect } from 'react'
-  
+ 
 import { useState } from 'react'
 
 export default function App({ Component, pageProps }) {

@@ -78,21 +78,7 @@ export default function Account({ session }) {
   
   return (
     <div className="form-widget bg-white">  
-      {/* <CreateStripeCustomer props = {user} />  */}
-
-      <div>
-        {/* <button
-          className="button primary block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
-          disabled={loading}
-        >
-          
-        </button> */}
-        {/* {loading ? 'Loading ...' : 'Update'} */}
-      </div>
-
       <Customize />
-
     </div>
   )
 }
