@@ -107,13 +107,13 @@ export default function Home() {
     
 
     <div className="width-100 bg-neutral ">
-      <div className="flex  justify-around flex-wrap z-10 m-2 ">
+      <div className="flex  justify-around flex-wrap z-10  md:p-10 p-3 ">
         {imageKeys.map(key => {
         if(key.length < 20){
           return
         }else{
             return(
-            <div key={key}className="h-48 w-48 m-5 border flex-shrink border-gray-700 bg-accent rounded-md" >
+            <div key={key}className="h-40 w-40 mt-5 mb-5  md:m-5 border flex-shrink border-gray-700 bg-accent rounded-md" >
               <p className="p-1 italic text-neutral">{key.slice(26,-4)}</p>
               <div className="text-center"> {!isImageReady && 'loading image...'}</div>
               <Image className="relative rounded-md hover:brightness-75" onLoadingComplete={()=> handleImageLoad()}  src={key.substring(6)} loading="lazy" unoptimized={true}  width={150} height={100} alt="image"/>
