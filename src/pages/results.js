@@ -52,7 +52,7 @@ if(isLoading==false && session){getData()}
             {images && !isLoading ? (
                 <div className="flex flex-col justify-center align-center items-center">
                 <div className="mb-3">
-                    <h1 className="text-neutral">If you would like to have you images emailed to you click here</h1>
+                    {/* <h1 className="text-neutral">If you would like to have you images emailed to you click here</h1> */}
                 </div>
                 <div className="flex justify-center align-center items-center flex-col mb-10">
                     <p>If your images have trouble loading please send me an email </p>

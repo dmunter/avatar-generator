@@ -214,9 +214,9 @@ return(
                 } */}
             {
                 isTraining &&        
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center text-center">
                     <p>your avatars will be here soon!</p>
-                    <p>we will send you results when your photos are finshed!</p>
+                    <p className="text-center items-center">we will send you results when your photos are finshed!</p>
                 </div>
             }
                 
