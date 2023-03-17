@@ -38,10 +38,6 @@ export default async function  handler(req, res) {
 
         resp = await response.json()
         console.log(resp)
-
-        await supabaseServerClient.from('user_models')
-        .update({'model_status': resp})
-        .eq('model_name', res.model)
         
         res.status(200).json(resp)
         // if(!resp.error){

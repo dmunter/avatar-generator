@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { useState } from 'react'
 import {images} from '../../components/utilites/images';
 import Footer from '../../components/layout/footer';
+import Skeleton from  '../../components/utilites/skeleton';
+
 export default function Home() {
   const imageKeys = Object.keys(images);
   const [isImageReady, setIsImageReady] = useState()
@@ -27,7 +29,7 @@ export default function Home() {
       </div>
       <div className="background-extended "></div>
 
-      <div className="showcase m-w-fit font-bold text-white text-center">
+      <div className=" m-w-fit font-bold text-white text-center showcase ">
           <div className="... ring  bg-black/30 ring-blue-500 ring-offset-3 rounded-md text-6xl leading-normal">
             <h1 className="">Create your own </h1>
             <h2 className="uppercase decoration-blue-500 text-transparent font-extrabold bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">picture perfect</h2>
@@ -115,17 +117,21 @@ export default function Home() {
             return(
             <div key={key}className="h-40 w-40 mt-5 mb-5  md:m-5 border flex-shrink border-gray-700 bg-accent rounded-md" >
               <p className="p-1 italic text-neutral">{key.slice(26,-4)}</p>
-              <div className="text-center"> {!isImageReady && 'loading image...'}</div>
+              <div className="text-center"> {!isImageReady &&  <Skeleton/>}</div>
               <Image className="relative rounded-md hover:brightness-75" onLoadingComplete={()=> handleImageLoad()}  src={key.substring(6)} loading="lazy" unoptimized={true}  width={150} height={100} alt="image"/>
               <p>{}</p>
             </div>)
           }       
         })}
+        <div className="w-48 h-48 bg-white ">
+          <Skeleton/>
+        </div>
+       
       </div>
     </div>
   
-    <div className="bg-neutral">
-        <div className="flex flex-col justify-center items-center border border-gray-700 shadow-2xl">
+    <div className="bg-neutral md:pl-20 md:pr-20 p-10">
+        <div className="flex flex-col justify-center items-center border border-gray-700   shadow-2xl">
             <h1 className="text-textwhite text-center  m-2 font-bold text-3xl">What type of photos should i upload?</h1>
             <p className="text-textwhite text-center p-5 "> We recommend 10 close-ups, 3 side profiles, 5 chest-up and 3 full body shots. Variety is key: facial expressions, locations, backgrounds and perspectives should all be different. Look away from the camera too. High quality photos work best; minimal makeup is advised as it may be exaggerated in the photos. No nudes, swimwear/underwear is OK.</p>
         </div>
@@ -138,8 +144,8 @@ export default function Home() {
     </div>
 
 
-<div className="bg-neutral border border-gray-700 p-10 whats-going-on">
-      <div className="explain m-auto  w-2/3 bg-neutral border border-gray-700  ">
+<div className="bg-neutral border border-gray-700 md:pl-20 md:pr-20 p-10 ">
+      <div className="explain  md:m-10  m-5    bg-neutral border border-gray-700  ">
         <div className="container p-4 text-white ">
           <h3 className="text-2xl leading-normal ">Whats actually going on?</h3>
           <p> Dreambooth is an open-source deep learning generation model used to fine-tune artifical intelligence imaging models and was developed by researchers like Nataniel Ruiz from Google Research and Boston University in 2022. It lets us teach artificial intelligence imaging models who you are by training it on your photos and then generate any image in any style you want with you in it!
