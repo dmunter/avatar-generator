@@ -28,7 +28,7 @@ export default async function  handler(req, res) {
                     instance_prompt: 'A photo of a cjw person',
                     class_prompt: 'A photo of a person',
                     instance_data: request.instance_data,
-                    max_train_steps: 800
+                    max_train_steps: 1200
                 },
                 model: request.model_name,
                 trainer_version: "cd3f925f7ab21afaef7d45224790eedbb837eeac40d22e8fefe015489ab644aa",
