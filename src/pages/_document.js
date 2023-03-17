@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head  
        meta name="viewport" content="width=device-width" nitial-scale="1"/>
+       <link rel="shortcut icon" href="../logo-black.svg" />
       <body>       
         <Main />
         <NextScript />

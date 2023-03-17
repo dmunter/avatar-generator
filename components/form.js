@@ -155,9 +155,8 @@ export default function Form ({getItems}){
                     <img className= "relative gender-images" src="/cat-animal-icon.svg" alt={"cat"} />
                 </div>
             </div>
-            <div className="flex align-center items-center justify-center m-4 justify-items-center h-10 ..."><div className="text-neutral-100 font-bold p-4 tracking-wider flex-col w-auto "> Select your styles</div><input type="checkbox" onChange={()=>toggle()} className="toggle toggle-secondary"  defaulttoggle='true' /></div>
-            <div className="">       
-            </div>
+            {formList.gender && <div className="flex align-center items-center justify-center m-4 justify-items-center h-10 ..."><div className="text-neutral-100 font-bold p-4 tracking-wider flex-col w-auto "> Select your styles</div><input type="checkbox" onChange={()=>toggle()} className="toggle toggle-secondary"  defaulttoggle='true' /></div>}
+           
 
             {/* <div className="flex-container flex space-around ">
                 {
@@ -176,7 +175,7 @@ export default function Form ({getItems}){
                 {woman_imageKeys.map((img,index)=>
                     <div className={formList.styles.includes(img.slice(20,-4))? genderPulse: genderHover} value={img.slice(20,-4)} onClick={(e)=> SetList(e,img)} key={index}>     
                         <p className="absolute z-10 text-xl text-white bold bg-neutral-500 bg-opacity-50 rounded-xl ">{img.slice(20,-4)}</p>               
-                        <Image className="relative rounded-md " src={img.slice(6)} loading="lazy"   height={150} width={150} alt="img"/>                
+                        <Image className="relative rounded-md " src={img.slice(6)} loading="lazy"  height={150} width={150} alt="img"/>                
                     </div>                               
                 )}
         </div>

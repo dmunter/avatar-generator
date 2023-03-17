@@ -10,6 +10,23 @@ export default function Home() {
   const imageKeys = Object.keys(images);
   const [isImageReady, setIsImageReady] = useState()
 
+
+  const [modalOpen, setModalOpen] = useState()
+  const [imgURL, setImgURL] = useState()
+
+  const handleImageClick = (key) => {
+    setImgURL(key)
+    setModalOpen(true);
+    
+  };
+
+  const handleModalClose = () => {
+    console.log("close")
+    setModalOpen(false);
+    setImgURL(null)
+  };
+
+
   const handleImageLoad=()=>{
       setIsImageReady(true)
   }
@@ -18,6 +35,17 @@ export default function Home() {
 
   return (
 <div className="container"> 
+    <div className="fixed z-20 bg-black/30 rounded-lg shadow ">
+      <div className= "flex justify-between wrap-none items-center p-3">
+            <div className="flex wrap-no justify-end items-center space-x-3">
+            <div className="gradient-button w-10 h-10  rounded-md p-1   ">
+                <Image className="absolute w-8" src='/user-circle.svg' width={100} height={100} alt="hero"/>
+            </div> 
+            <div className="divider-horizontal divider white"></div>
+            <h1 className="uppercase text-md font-semibold">Img-Gen </h1>                   
+            </div>
+        </div>
+    </div>
       <div className="halie-container">   
         <div className="stars"></div>   
         <div className="twinkling"></div>
@@ -115,8 +143,8 @@ export default function Home() {
           return
         }else{
             return(
-            <div key={key}className="h-40 w-40 mt-5 mb-5  md:m-5 border flex-shrink border-gray-700 bg-neutral-200 rounded-md" >
-              <p className="p-1 italic text-neutral">{key.slice(26,-4)}</p>
+            <div key={key}className="h-40 w-40 mt-5 mb-5  md:m-5 border flex-shrink bg-neutral-200 p-3 rounded-md" onClick={()=> handleImageClick(key.substring(6))} >
+              <p className="p-1 italic text-neutral absolute z-10 font-bold text-success rounded-md  bg-black/40 ">{key.slice(26,-4)}</p> 
               {!isImageReady &&  <Skeleton/>}
               <Image className="relative rounded-md hover:brightness-75" onLoadingComplete={()=> handleImageLoad()}  src={key.substring(6)} loading="lazy" unoptimized={true}  width={150} height={100} alt="image"/>
               <p>{}</p>
@@ -165,7 +193,23 @@ export default function Home() {
 
   </div>
 </div>
-
+{modalOpen && (
+  <>
+    <div className="w-screen h-screen fixed inset-0  z-10 backdrop-blur-sm hover:opacity-50" > </div>
+    <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+              <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                <div className="border-0 rounded-lg shadow-lg relative flex w-48 flex-col w-full bg-white outline-none focus:outline-none" onClick={()=>handleModalClose()}>   
+                  <img className="relative "
+                  src={imgURL}
+                  alt="My Image"           
+                  onClose={()=>handleModalClose()}
+                />                                     
+              </div>
+            </div>
+    </div>
+  </>
+      )}
+   
 
 
 <Footer/>
