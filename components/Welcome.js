@@ -46,13 +46,16 @@ export default function Welcome(){
                 
                     {isLoading && 
                     <div className="flex justify-around w-50 h-50">
-                      <Skeleton/>
-                      <Skeleton/>
+                  
                     </div>
                     }   
                     <div className="flex justify-around p-1">
-                        <div className="p-1 bg-white lg:m-4 md:m-2 sm:m-1 rounded-xl" ><Image src="/ben_yes.png" height={50} width={50} alt="ben_yes" onLoadingComplete={()=> handleImageLoad()}  loading="lazy" unoptimized={true}   className="relative" /></div>
-                        <div className= "p-1 bg-white lg:m-4 md:m-2 sm:m-1 rounded-xl"> < Image  src="/ben_no.png" height={50} width={50} alt="ben_no" onLoadingComplete={()=> handleImageLoad()} loading="lazy" unoptimized={true}   className="relative "/></div>
+                        <div className="p-1  lg:m-4 md:m-2 sm:m-1  rounded-xl" >
+                            {isLoading && <div className="h-96 w-96 overflow-hidden rounded-sm bg-white"><Skeleton/></div>}
+                             <Image src="/ben_yes.png" height={50} width={50} alt="ben_yes" onLoadingComplete={()=> handleImageLoad()}  loading="lazy" unoptimized={true}   className="relative" /> </div>
+                        <div className= "p-1  lg:m-4 md:m-2 sm:m-1  rounded-sm"> 
+                            {isLoading && <div className="h-96 w-96 overflow-hidden rounded-xl bg-white"><Skeleton/></div>}
+                            <Image  src="/ben_no.png" height={50} width={50} alt="ben_no" onLoadingComplete={()=> handleImageLoad()} loading="lazy" unoptimized={true}   className="relative "/></div>
                     </div>
                     
                 

@@ -38,12 +38,18 @@ async function submitformavatar(){
     //if Model progress has started. dont let user submit model
     const { data: progression } = await supabase
     .from('profiles')
-    .select('started')
+    .select('*')
     .eq('id', user.id)
     .select()
-    if(progression[0].started){
+    if(progression[0].completed){
+      setUploading(false)
+      setErrorMessage("Your model is done training")
+      return
+    }
+    else if(progression[0].started){
       setUploading(false)
       setErrorMessage("You have already started training a model")
+      return
     }
 
     const user_models = await supabase
@@ -139,7 +145,7 @@ return(
     <div className="bg-neutral ">
     <Avatar uid={user.id} onChange={updateAvatar} /> 
     <Form getItems = {updateForm}/>
-    <div className="flex justify-center m-2">
+    <div className="flex justify-center p-2">
     { !uploading ? (
      <button className="btn" onClick ={()=> submitformavatar(avatars, formitems)}>
           Confirm changes

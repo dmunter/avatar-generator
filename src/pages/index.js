@@ -115,9 +115,9 @@ export default function Home() {
           return
         }else{
             return(
-            <div key={key}className="h-40 w-40 mt-5 mb-5  md:m-5 border flex-shrink border-gray-700 bg-accent rounded-md" >
+            <div key={key}className="h-40 w-40 mt-5 mb-5  md:m-5 border flex-shrink border-gray-700 bg-neutral-200 rounded-md" >
               <p className="p-1 italic text-neutral">{key.slice(26,-4)}</p>
-              <div className="text-center"> {!isImageReady &&  <Skeleton/>}</div>
+              {!isImageReady &&  <Skeleton/>}
               <Image className="relative rounded-md hover:brightness-75" onLoadingComplete={()=> handleImageLoad()}  src={key.substring(6)} loading="lazy" unoptimized={true}  width={150} height={100} alt="image"/>
               <p>{}</p>
             </div>)
