@@ -102,7 +102,7 @@ const getStripe=async()=>{
               <div 
                 className="m-auto relative  bg-white block rounded-xl border border-gray-100 p-8 shadow-xl"> 
                 <span className="absolute right-4 top-4 rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600">
-                    $13.99
+                    $9.99
                 </span>
 
                 <div className="mt-1 text-gray-500 ">
@@ -111,9 +111,9 @@ const getStripe=async()=>{
                   </div>
                     <div className=" text-sm sm:block p-5">
                         <ul>
-                            <li>✨ 100+ custom photos</li>
+                            <li>✨ 60+ custom photos</li>
                             <li>✨ 4k photo realistic images</li>
-                            <li>✨ 20+ different styles to chose from</li>
+                            <li>✨ 30+ different styles to chose from</li>
                             
                         </ul>
                     </div>
