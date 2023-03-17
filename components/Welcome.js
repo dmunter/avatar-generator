@@ -1,4 +1,4 @@
-import Skeleton from "./utilites/skeleton"
+
 import Image from 'next/image'
 import {useState} from 'react'
 import Skeleton from "./utilites/skeleton"
