@@ -123,9 +123,9 @@ export default function Home() {
             </div>)
           }       
         })}
-        <div className="w-48 h-48 bg-white ">
+        {/* <div className="w-48 h-48 bg-grey ">
           <Skeleton/>
-        </div>
+        </div> */}
        
       </div>
     </div>

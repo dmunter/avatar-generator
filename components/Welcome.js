@@ -1,6 +1,7 @@
 import Skeleton from "./utilites/skeleton"
 import Image from 'next/image'
 import {useState} from 'react'
+import Skeleton from "./utilites/skeleton"
 export default function Welcome(){
     const [isLoading, setIsloading] = useState(true)
     const handleImageLoad =()=>{
@@ -45,8 +46,8 @@ export default function Welcome(){
                 
                     {isLoading && 
                     <div className="flex justify-around w-50 h-50">
-                      <div className=" rounded-xl" ><img className="rounded-xl relative" src={'animated/skeleton.svg'}/></div>
-                      <div className= " rounded-xl"><img className="rounded-xl relative" src={'animated/skeleton.svg'}/></div>                  
+                      <Skeleton/>
+                      <Skeleton/>
                     </div>
                     }   
                     <div className="flex justify-around p-1">
