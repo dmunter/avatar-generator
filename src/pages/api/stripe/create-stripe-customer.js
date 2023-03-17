@@ -20,7 +20,7 @@ export default async function  handler(req, res) {
   
   console.log(email)
 
-  const stripe = initStripe(process.env.STRIPE_SECRET)
+  const stripe = initStripe(process.env.STRIPE_SECRET_PROD)
   const customer = await stripe.customers.create({
     email: email,
   })
