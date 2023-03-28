@@ -18,7 +18,7 @@ export default function Form ({getItems}){
     //}
     //console.log(woman_imageKeys)
     //const [isWomanImageReady, setIsWomanImageReady] = useState()
-    console.log(formList)
+    //console.log(formList)
 
     const toggle=()=>{ 
         if(formList.gender == 'woman'){

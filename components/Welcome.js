@@ -38,9 +38,9 @@ export default function Welcome(){
                 
             
             <div className="">
-                <div className="flex text-neutral text-md justify-center m-2 ">
-                    <div className="flex text-center p-4    flex-col w-auto">
-                        <div className="text-neutral-100 font-bold p-4 tracking-wider flex-col w-auto  "> Remember, these are the type of photos your looking for</div>
+                <div className="flex text-neutral text-md justify-center  ">
+                    <div className="flex text-center p-1    flex-col w-auto">
+                        <div className="text-neutral-100 font-bold p-2 tracking-wider flex-col w-auto  "> Remember, these are the type of photos your looking for</div>
                     </div>
                 </div>
                 

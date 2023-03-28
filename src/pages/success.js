@@ -24,9 +24,9 @@ export default function Success(){
             }
         }
 
-        if(isLoading == false){
-            fetch()
-        }
+        if(isLoading == false && !session){
+            Router.push('/signin')
+        } else if (isLoading == false) fetch()
     },[isLoading])
 
     return(

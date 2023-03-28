@@ -26,7 +26,7 @@ export default function SubmitModel(){
             .from('user_models')
             .select('*')
             .eq('model_name', name[0].model_name)
-        console.log(name[0].model_name)
+        //console.log(name[0].model_name)
             if(currentStatus=='Training')return
         //console.log(model[0]?.model_status)
            if(model[0]?.completed){

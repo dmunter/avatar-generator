@@ -202,7 +202,6 @@ export default function Home() {
                   <img className="relative "
                   src={imgURL}
                   alt="My Image"           
-                  onClose={()=>handleModalClose()}
                 />                                     
               </div>
             </div>

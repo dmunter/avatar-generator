@@ -9,6 +9,21 @@ const supabase = useSupabaseClient()
 
 const [images, setImages] = useState(null)
 
+const [modalOpen, setModalOpen] = useState()
+const [imgURL, setImgURL] = useState()
+
+const handleImageClick = (key) => {
+  setImgURL(key)
+  setModalOpen(true);
+  
+};
+
+const handleModalClose = () => {
+  console.log("close")
+  setModalOpen(false);
+  setImgURL(null)
+};
+
 useEffect(()=>{
     const getData= async()=>{
         const {data: user} = await supabase
@@ -42,8 +57,8 @@ if(isLoading==false && session){getData()}
                 {images && !isLoading &&
                     images.map((image)=> (
                         <div className="relative w-48 rounded-md" key={image}> 
-                            <Image className="relative m-5 rounded-md" src={image} height={150} width={150}   placeholder="blur" blurDataURL="/image-placeholder.png" loading='lazy'/>
-                            <p>{console.log(image)}</p>
+                            <Image onClick={()=> handleImageClick(key.substring(6))} className="relative m-5 rounded-md" src={image} height={150} width={150}   placeholder="blur" blurDataURL="/image-placeholder.png" loading='lazy'/>
+                        <p>{console.log(image)}</p>
 
                         </div>
                     ))
@@ -62,7 +77,22 @@ if(isLoading==false && session){getData()}
             </div> 
             ) :(<></>)
             }
-      
+
+      {modalOpen && (
+        <>
+            <div className="w-screen h-screen fixed inset-0  z-10 backdrop-blur-sm hover:opacity-50" > </div>
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                        <div className="border-0 rounded-lg shadow-lg relative flex w-48 flex-col w-full bg-white outline-none focus:outline-none" onClick={()=>handleModalClose()}>   
+                        <img className="relative "
+                        src={imgURL}
+                        alt="My Image"           
+                        />                                     
+                    </div>
+                    </div>
+            </div>
+        </>
+      )}
 
         </div>
     )

@@ -1,5 +1,4 @@
 import Avatar from './Avatar'
-import Welcome from './Welcome'
 import Form from './form'
 import SubmitModel from './replicatemodel'
 //import submitformavatar from './submitformavatar'
@@ -16,11 +15,14 @@ const [formitems, setFormItems] = useState()
 const [avatars, setAvatars] = useState()
 const [errorMessage, setErrorMessage]= useState()
 const supabase = useSupabaseClient()
+
 const updateForm = useCallback((formitems)=>{
     setFormItems(formitems)
 },[formitems])
-const updateAvatar= useCallback((files)=>{
-    setAvatars(files)
+
+const updateAvatar= useCallback((compressedFilesURL)=>{
+  //console.log(avatars[0])
+    setAvatars(compressedFilesURL)
 },[avatars])
 
 useEffect(()=>{
@@ -78,25 +80,39 @@ async function submitformavatar(){
 
       const zip = new JSZip();
       const promises = [];
-      for (let i = 0; i < avatars.length; i++) {
+      for (let i = 1; i < avatars.length; i++) {
+        // promises.push (
+        //   new Promise((resolve, reject) => {
+        //     const reader = new FileReader();
+        //     reader.onload = (event) => {
+        //      // console.log('onload')
+        //       zip.file(avatars[i].name, event.target.result);
+        //       resolve();
+        //     };
+        //     reader.onerror = (error) => reject(error);
+        //     reader.readAsArrayBuffer(avatars[i]);
+        //   })
+        // );
         promises.push (
           new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-             // console.log('onload')
-              zip.file(avatars[i].name, event.target.result);
+           //const reader = new FileReader();
+           // reader.onload = (event) => {
+             console.log(avatars)
+              zip.file(avatars[i].name,  avatars[i].file.split(',')[1], { base64: true });
+              console.log(avatars[i])
               resolve();
-            };
-            reader.onerror = (error) => reject(error);
-            reader.readAsArrayBuffer(avatars[i]);
+          // };
+          //reader.onerror = (error) => reject(error);
+          //reader.readAsDataURL(avatars[i);
           })
         );
       }
       
     await Promise.all(promises)
     const content = await zip.generateAsync({ type: "blob" });
+    //saveAs(blob, 'images.zip')
     //const fileName = `${uid}.${(Math.random()*100000).toString().split('.')[0]}`
-    //   
+    
     const fileName = `${user.id}`+"-"+ (Math.random()*100000).toString().split('.')[0]
     // const filePath = `${fileName}`
     //onUpload(filePath)
