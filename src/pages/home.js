@@ -2,10 +2,12 @@ import Account from '../../components/Account'
 import {useRouter} from 'next/router'
 import { useSession ,useSupabaseClient, useUser, useSessionContext } from '@supabase/auth-helpers-react'
 import { useEffect, useState } from 'react'
+
 import Header from '../../components/layout/header'
 import Welcome from '../../components/Welcome'
 import Router from 'next/router'
 import Footer from '../../components/layout/footer'
+
 export default function Home(){
     const [state, setState] = useState(null)
   
@@ -45,3 +47,4 @@ export default function Home(){
         </div>
     )
 }
+

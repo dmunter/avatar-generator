@@ -64,7 +64,7 @@ export default function Home() {
             <h1 className="">AI avatars</h1>
             <div className="text-lg leading-7">
               <p>As seen on tik tok! 📱</p>
-              <p>Receive 100+ photos of yourself as an AI generated image 🖼️</p>
+              <p>Receive 60+ photos of yourself as an AI generated image 🖼️</p>
               <p>Your privacy is important. Your data is never shared! 🤫 </p>
               <p>Chose between 50+ different styles 👗</p>
               <p>Receive photos to show off on social media! 📷</p>
@@ -171,16 +171,15 @@ export default function Home() {
         </div>
     </div>
 
+    <div className="bg-neutral md:pl-20 md:pr-20 p-10">
+        <div className="flex flex-col justify-center items-center border border-gray-700   shadow-2xl">
+            <h1 className="text-textwhite text-center  m-2 font-bold text-3xl">Whats actually going on?</h1>
+            <p className="text-textwhite text-center p-5 ">Dreambooth is an open-source deep learning generation model used to fine-tune artifical intelligence imaging models and was developed by researchers like Nataniel Ruiz from Google Research and Boston University in 2022. It lets us teach artificial intelligence imaging models who you are by training it on your photos and then generate any image in any style you want with you in it!
+          The artificial intelligence imaging model we use is called Stable Diffusion, created by many researchers at LMU University in Munich and RunwayML, supported by Emad Mostaque and others at Stability AI. 
+          </p>
+        </div>
+    </div>
 
-<div className="bg-neutral border border-gray-700 md:pl-20 md:pr-20 p-10 ">
-      <div className="explain  md:m-10  m-5    bg-neutral border border-gray-700  ">
-        <div className="container p-4 text-white ">
-          <h3 className="text-2xl leading-normal ">Whats actually going on?</h3>
-          <p> Dreambooth is an open-source deep learning generation model used to fine-tune artifical intelligence imaging models and was developed by researchers like Nataniel Ruiz from Google Research and Boston University in 2022. It lets us teach artificial intelligence imaging models who you are by training it on your photos and then generate any image in any style you want with you in it!
-          The artificial intelligence imaging model we use is called Stable Diffusion, created by many researchers at LMU University in Munich and RunwayML, supported by Emad Mostaque and others at Stability AI. </p>
-          </div>
-      </div>
-</div>
 
 <div className ="bg-neutral">
   <div className="FAQs flex flex-col align-center justify-centers items-center text-center text-white md:p-32 p-12">
@@ -198,8 +197,8 @@ export default function Home() {
     <div className="w-screen h-screen fixed inset-0  z-10 backdrop-blur-sm hover:opacity-50" > </div>
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
               <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                <div className="border-0 rounded-lg shadow-lg relative flex w-48 flex-col w-full bg-white outline-none focus:outline-none" onClick={()=>handleModalClose()}>   
-                  <img className="relative "
+                <div className="border-0 rounded-lg shadow-lg relative flex w-46  flex-col w-full bg-white outline-none focus:outline-none" onClick={()=>handleModalClose()}>   
+                  <img className="relative"
                   src={imgURL}
                   alt="My Image"           
                 />                                     

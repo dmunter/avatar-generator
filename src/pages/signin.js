@@ -60,7 +60,7 @@ export default  function  SignIn() {
                 },
               },
             }}
-            providers={['apple', 'google']}
+            providers={['google']}
             theme='dark'
           />
         </div>

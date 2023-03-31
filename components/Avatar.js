@@ -15,15 +15,16 @@ export default function Avatar({ uid,  onChange }) {
   useEffect(() => {
     console.log(compressedFilesURL)
     onChange(compressedFilesURL)   
-  }, [compressedFiles] )
+    // console.log(compressedFilesU)
+  }, [compressedFilesURL] )
 
   const getCompressedImages = (fileURL) =>{
-    //
     if(!(typeof fileURL[0]==='undefined')){
       console.log(fileURL[0].name )
       if (!compressedFilesURL.some(e => e.name === fileURL[0].name)) {
         console.log("line 24")
         setCompressFilesURL((compressedFilesURL)=> [...compressedFilesURL, {name: fileURL[0].name, file: fileURL[0].file}])
+         
       }
     }
 }
@@ -118,8 +119,9 @@ export default function Avatar({ uid,  onChange }) {
         <div className="avatar no-image" style={{ height: size, width: size }} />
       )} */}
       <div className="p-2 pt-8 border-t border-neutral-500">
-        <h1 >Please upload 10-20 images</h1>
-        <h1>For the best results possible. The more the better!</h1>
+      <h1>Please upload 10-20 images for best results. The more the better!</h1>
+      <h1>We recommend 10 close-ups, 3 side profiles, 5 chest-up and 3 full body shots.</h1>
+        
       </div>
 
       <div >

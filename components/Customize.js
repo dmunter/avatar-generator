@@ -14,6 +14,8 @@ const  [modelReady, setModelReady] = useState(false)
 const [formitems, setFormItems] = useState()
 const [avatars, setAvatars] = useState()
 const [errorMessage, setErrorMessage]= useState()
+
+const [confirmingChanges , setConfirmingChanges] = useState(false)
 const supabase = useSupabaseClient()
 
 const updateForm = useCallback((formitems)=>{
@@ -36,6 +38,7 @@ useEffect(()=>{
 
 //submits to avatars and form to supabase
 async function submitformavatar(){
+    setConfirmingChanges(false)
     setUploading(true)
     //if Model progress has started. dont let user submit model
     const { data: progression } = await supabase
@@ -97,7 +100,7 @@ async function submitformavatar(){
           new Promise((resolve, reject) => {
            //const reader = new FileReader();
            // reader.onload = (event) => {
-             console.log(avatars)
+             //console.log(avatars)
               zip.file(avatars[i].name,  avatars[i].file.split(',')[1], { base64: true });
               console.log(avatars[i])
               resolve();
@@ -154,6 +157,7 @@ async function submitformavatar(){
     setUploading(false)
     setModelReady(true)
     setErrorMessage(null)
+    setConfirmingChanges(true)
 }
 //setModelReady(true)
 //console.log(avatars)
@@ -161,7 +165,7 @@ return(
     <div className="bg-neutral ">
     <Avatar uid={user.id} onChange={updateAvatar} /> 
     <Form getItems = {updateForm}/>
-    <div className="flex justify-center p-2">
+    <div className="flex justify-center p-2 flex-col">
     { !uploading ? (
      <button className="btn" onClick ={()=> submitformavatar(avatars, formitems)}>
           Confirm changes
@@ -172,10 +176,17 @@ return(
       </button> 
     )
     }
+    {
+      confirmingChanges && 
+      <div className="alert alert-success shadow-lg justify-start align-end content-center mt-2 mb-5"> 
+         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6 " fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+         <p>You have successfully confirmed your changes! Submit your model once you are ready.</p>
+      </div>
+    }
     </div>
 
-  {errorMessage && <div class="m-3">
-    <div class="alert alert-error shadow-lg ">
+  {errorMessage && <div className="m-3">
+    <div className="alert alert-error shadow-lg ">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6 " fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         <span>{errorMessage}</span>

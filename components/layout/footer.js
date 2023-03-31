@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import Link from 'next/link'
+
 export default function Footer(){
 
     return(
@@ -19,9 +21,9 @@ export default function Footer(){
             <footer className="footer flex flex-shrink justify-around  bg-neutral text-neutral-content">
             <div>
                 <span className="footer-title">Services</span> 
-                <a className="link link-hover">Branding</a>
-                <a className="link link-hover">Marketing</a>
-                <a className="link link-hover">Advertisement</a>
+                <Link href="/signin" className="link link-hover">Imaging</Link>
+                <Link href="/signin" className="link link-hover">Offers</Link>
+                
             </div> 
             <div>
                 <span className="footer-title">Company</span> 
@@ -30,9 +32,9 @@ export default function Footer(){
             </div> 
             <div>
                 <span className="footer-title">Legal</span> 
-                <a className="link link-hover">Terms of use</a>
-                <a className="link link-hover">Privacy policy</a>
-                <a className="link link-hover">Cookie policy</a>
+                <Link href="/policy" className="link link-hover">Terms of use</Link>
+                <Link href="/policy" className="link link-hover">Privacy policy</Link>
+                <Link href="/policy" className="link link-hover" >Cookie policy</Link>
             </div>
             </footer>
         </div>
