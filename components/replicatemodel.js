@@ -14,6 +14,9 @@ export default function SubmitModel(){
     const [isDone, setIsDone] = useState(false)
     const [isTraining, setIsTraining] = useState(false)
     const [showModal, setShowModal] = useState(false)
+
+    const[userInfo, setUserInfo] = useState()
+
 //check if model is running
     useEffect(()=>{
         const fetch=async ()=>{      
@@ -26,6 +29,7 @@ export default function SubmitModel(){
             .from('user_models')
             .select('*')
             .eq('model_name', name[0].model_name)
+            setUserInfo(model)
         //console.log(name[0].model_name)
             if(currentStatus=='Training')return
         //console.log(model[0]?.model_status)
@@ -101,25 +105,26 @@ export default function SubmitModel(){
     
     //if model is training render this
 
-    // async function running(){
-    //     while(
-    //         prediction.status !== "succeeded" &&
-    //         prediction.status !== "failed"
-    //     ){
-    //         await sleep(3000)
-    //         const response = await fetch('/api/getstatus/' + prediction.id)
-    //         const nprediction = await response.json()
-    //         if(response.status !==200){
-    //             setIsTraining(false)
-    //             return <></>
-    //         } 
-    //         setPredction(nprediction)
-    //     }
+    async function freshBoot(){
+            console.log(userInfo)
 
-    // }
+            // const response = await fetch('/api/createimg'
+            // ,{
+            //   method: 'POST',
+            //   body: JSON.stringify({
+            //       version: userInfo[0]?.version,
+            //   })
+            // })
+            // const nprediction = await response.json()
+
+            // console.log(nprediction)
+    }
+
+    
      
     const submitReady =(
-        <>
+        <> 
+        
         <div className="gradient-button text-white flex align-center items-center justify-center w-32 h-11 rounded shadow hover:shadow-xl outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
             <button
             className=" font-bold uppercase text-sm px-6 "
@@ -129,6 +134,9 @@ export default function SubmitModel(){
             Submit
             </button>
         </div>
+
+        
+        
         {showModal ? (
           <>
             <div className="w-screen h-screen fixed inset-0  z-20 backdrop-blur-sm "> </div>
@@ -213,11 +221,17 @@ return(
                     latestError && <p className="bg-error">{latestError}</p>
                 } */}
             {
-                isTraining &&        
-                <div className="flex flex-col items-center text-center">
-                    <p>your avatars will be here soon!</p>
-                    <p className="text-center items-center">we will send you results when your photos are finshed!</p>
-                </div>
+                isTraining &&      
+                <div className="rounded gradient-button h-fit p-1">
+                  <div className="rounded bg-neutral p-5">
+                    <div className="flex flex-col items-center text-center">
+                      <p>your avatars will be here soon!</p>
+                      <p className="text-center items-center">Check back in a few minutes.</p>
+                    </div>
+                  </div>
+
+                </div>  
+                
             }
                 
             {currentStatus=='Loading' ? (
@@ -235,6 +249,9 @@ return(
             
         </div>
        
+       {/* <div onClick={()=>{freshBoot()}} >
+          Model taking a while?
+       </div> */}
         
     </div>
 

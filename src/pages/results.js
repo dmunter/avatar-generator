@@ -53,11 +53,11 @@ if(isLoading==false && session){getData()}
                     <p>you havn't trained your model yet</p>
                 </div> ) :(<></>)
             }
-            <div className="flex flex-row flex-wrap justify-between">
+            <div className="flex flex-row flex-wrap justify-center context-center align-center">
                 {images && !isLoading &&
                     images.map((image)=> (
-                        <div className="relative w-48 rounded-md" key={image}> 
-                            <Image onClick={()=> handleImageClick(key.substring(6))} className="relative m-5 rounded-md" src={image} height={150} width={150}   placeholder="blur" blurDataURL="/image-placeholder.png" loading='lazy'/>
+                        <div className="relative w-40 rounded-md p-3" key={image}> 
+                            <Image onClick={()=> handleImageClick(image.substring(6))} className="relative m-5 rounded-md" src={image} height={150} width={150}   placeholder="blur" blurDataURL="/image-placeholder.png" loading='lazy'/>
                         <p>{console.log(image)}</p>
 
                         </div>
@@ -83,7 +83,7 @@ if(isLoading==false && session){getData()}
             <div className="w-screen h-screen fixed inset-0  z-10 backdrop-blur-sm hover:opacity-50" > </div>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                     <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                        <div className="border-0 rounded-lg shadow-lg relative flex w-48 flex-col w-full bg-white outline-none focus:outline-none" onClick={()=>handleModalClose()}>   
+                        <div className="border-0 rounded-lg shadow-lg relative flex w-46  flex-col w-full bg-white outline-none focus:outline-none" onClick={()=>handleModalClose()}>   
                         <img className="relative "
                         src={imgURL}
                         alt="My Image"           
