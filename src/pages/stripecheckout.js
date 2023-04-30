@@ -102,7 +102,7 @@ const getStripe=async()=>{
               <div 
                 className="m-auto relative  bg-white block rounded-xl border border-gray-100 p-8 shadow-xl"> 
                 <span className="absolute right-4 top-4 rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600">
-                    $9.99
+                    $4.99
                 </span>
 
                 <div className="mt-1 text-gray-500 ">
